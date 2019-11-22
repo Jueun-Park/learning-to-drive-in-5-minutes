@@ -284,7 +284,7 @@ def create_callback(algo, save_path, verbose=1):
         if mean_reward > best_mean_reward:
             if verbose >= 1:
                 print("Saving best model")
-            _locals['self'].save(save_path)
+            _locals['self'].save(save_path + "_" + str(_locals['step']))
             best_mean_reward = mean_reward
 
         return True

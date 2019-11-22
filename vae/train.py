@@ -26,6 +26,7 @@ parser.add_argument('--kl-tolerance', help='KL tolerance (to cap KL loss)', type
 parser.add_argument('--beta', help='Weight for kl loss', type=float, default=1.0)
 parser.add_argument('--n-epochs', help='Number of epochs', type=int, default=10)
 parser.add_argument('--verbose', help='Verbosity', type=int, default=1)
+parser.add_argument('--save-path', help='Save path', type=str, default='logs/')
 args = parser.parse_args()
 
 set_global_seeds(args.seed)
@@ -64,6 +65,10 @@ data_loader = DataLoader(minibatchlist, images, n_workers=2, folder=args.folder)
 vae_controller = VAEController(z_size=args.z_size)
 vae_controller.vae = vae
 
+from datetime import datetime
+sst = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+print(sst)
+
 for epoch in range(args.n_epochs):
     pbar = tqdm(total=len(minibatchlist))
     for obs in data_loader:
@@ -97,8 +102,12 @@ for epoch in range(args.n_epochs):
         cv2.imshow("Reconstruction", reconstructed_image)
         cv2.waitKey(1)
 
-save_path = "logs/vae-{}".format(args.z_size)
+save_path = args.save_path + "vae-{}".format(args.z_size)
 os.makedirs(save_path, exist_ok=True)
 print("Saving to {}".format(save_path))
 vae_controller.set_target_params()
 vae_controller.save(save_path)
+
+sset = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+print("start time:", sst)
+print("end time:", sset)
