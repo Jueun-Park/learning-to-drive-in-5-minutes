@@ -1,3 +1,6 @@
+records/
+logss/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -6,6 +9,10 @@ __pycache__/
 *.pkl
 .idea/
 logs/
+logs_d/
+logs_sunset/
+record_night/
+record_sunset/
 
 # C extensions
 *.so
