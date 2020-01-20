@@ -50,7 +50,7 @@ class SACWithVAE(SAC):
 
         with TensorboardWriter(self.graph, self.tensorboard_log, tb_log_name) as writer:
 
-            self._setup_learn(seed)
+            self._setup_learn()
 
             # Transform to callable if needed
             self.learning_rate = get_schedule_fn(self.learning_rate)
