@@ -11,7 +11,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.json
-*.pkl
+# *.pkl
 .idea/
 logs/
 logs_d/
